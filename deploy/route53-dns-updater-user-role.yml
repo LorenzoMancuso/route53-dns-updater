@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  UserPassword:
+    Type: String
+    Description: Enter the new user's password.
+    MinLength: 8
+    NoEcho : "true"
+  TargetHostedZoneId:
+    Type: String
+    Description: Enter the hosted zone id you want to give permissions to.
+
+Resources:
+  Route53DnsUpdaterUser:
+    Type: AWS::IAM::User
+    Properties: 
+      LoginProfile: 
+        Password: !Ref UserPassword
+        PasswordResetRequired: False
+      UserName: route53-dns-updater
+
+  Route53DnsUpdaterRole:
+    Type: AWS::IAM::Role
+    Properties: 
+      RoleName: route53-dns-updater-role
+      Description: Route53 dns updater role
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement: 
+          - Effect: "Allow"
+            Principal: 
+              AWS:
+                - !Sub 'arn:aws:iam::${AWS::AccountId}:user/${Route53DnsUpdaterUser}'
+            Action: 
+              - "sts:AssumeRole"
+      Policies: 
+        - PolicyName: !Sub route53-dns-updater-policy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - route53:GetHostedZone
+                  - route53:ChangeResourceRecordSets
+                  - route53:ListResourceRecordSets
+                Resource:
+                  - !Sub "arn:aws:route53:::hostedzone/${TargetHostedZoneId}"
+              - Effect: Allow
+                Action:
+                  - route53:ListHostedZones
+                Resource:
+                  - "*"
