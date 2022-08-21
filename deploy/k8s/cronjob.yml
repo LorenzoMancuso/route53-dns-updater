@@ -13,7 +13,12 @@ spec:
           containers:
             - name: route53-dns-updater
               image: loryman95/route53-dns-updater:0.1
-              imagePullPolicy: IfNotPresent
+              imagePullPolicy: Always
+              env:
+                - name: HOSTED_ZONE_ID
+                  value: "Z0523732R9RV5H9VYVQ0"
+                - name: RECORD_NAME
+                  value: "mancuso.services"
               volumeMounts:
                 - name: aws-secrets
                   mountPath: "/root/.aws/"
