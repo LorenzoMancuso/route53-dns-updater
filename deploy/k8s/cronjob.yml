@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: route53-dns-updater
+spec:
+  schedule: "* * * * *"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      template:
+        spec:
+          containers:
+            - name: route53-dns-updater
+              image: loryman95/route53-dns-updater:0.1
+              imagePullPolicy: IfNotPresent
+              volumeMounts:
+                - name: aws-secrets
+                  mountPath: "/root/.aws/"
+                  readOnly: true
+          restartPolicy: Never
+          volumes:
+            - name: aws-secrets
+              projected:
+                sources:
+                - secret:
+                    name: route53-dns-updater-aws-credentials
+                - secret:
+                    name: route53-dns-updater-aws-config

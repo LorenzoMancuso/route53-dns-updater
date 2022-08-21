@@ -1,0 +1,16 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: route53-dns-updater-aws-config
+  namespace: default
+spec:
+  encryptedData:
+    config: AgAxIEuF6ER4PLhyI1AluGnvVQeZW4igeadc/e7IVy6bvQ5mMaahuDVHw+GALMdAcPdllByE+S45M7UGgsypv1MIx+RcvOuERqNTVB+1JF+rHwLHEijLQfHCcSCByZpvgYCZmx6rOoj5TlbUUE8BtCfvl4VeiWp4O/Mr3U3Wy9tHT4A2lCGSKAhHbPVckynpFlUap/Glj+JOiHUvdSjmP6Dc6uplnw9EUtO1tMkq7fc52i9pxvaZofX+iUhgU47rt2VXR7wKQQ6PdVOlXmp32OQDcdx81PsmLs9W0hNULHiCiafbBE4cdp8IpYUvAWheNquvTe5L0ijlWWKl/lJprpBYMcgT8YCthpN9uSg6yvn1O0MsA9eaH1bHZWAN9DdHDXj28pg1NB65cCAiplNmKIGlda3ndyXHelslZy5B1nocS2MpUARsKKQAfKGvBrOa5jf1edNYBWMhdZC3W95HbEUfioeYX9YXLx6b5kWvvL4fa9jb6siEWZnpASH1ve5Abmg1IVKCtLJXmtzXttozPxA/UNql7x6WEjxpsOJ1ouIx43T0FLS+iOBpstJDdgedw5pjERupw/YH1El/7pBxmzISYUN4B6//mY2fLiLOKeD17sXdtuxeNMlzsdwLt/uQB0GAcxpsFf9QRkYXNJuVXBNrir30rDwMAq2LVAulQlgVLnwzInPfj5CGsGHY8EbQOXYpPh4Ig13R8pXnVoQlg6wecUB/PboQIGHd203Rvm2kcHIY/BEYWV5ZVBWjU7XVq8hzn/gJyGZfjnqN/u/orCR8iDCt56LnBsqNGI+LhaOtm4Cex8+VsYiNw8sWeK8Q/7boSNV9oCD+BCS7
+  template:
+    data: null
+    metadata:
+      creationTimestamp: null
+      name: route53-dns-updater-aws-config
+      namespace: default
+
