@@ -5,6 +5,8 @@ metadata:
 spec:
   schedule: "* * * * *"
   concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
   jobTemplate:
     spec:
       backoffLimit: 0
@@ -13,7 +15,7 @@ spec:
           containers:
             - name: route53-dns-updater
               image: loryman95/route53-dns-updater:0.1
-              imagePullPolicy: Always
+              imagePullPolicy: IfNotPresent
               env:
                 - name: HOSTED_ZONE_ID
                   value: "Z0523732R9RV5H9VYVQ0"
